@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-secondary: #F4A261;
+}
+
+html,
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.bg-primary {
+  background-color: #0c3c41;
+}
+
+.bg-primary-opaque {
+  background-color: rgba(12, 60, 65, 0.8);
+}
+
+.text-secondary {
+  color: #f4a261;
+}
+
+.bg-secondary {
+  background-color: #f4a261;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: #f4a261;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltip-text::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #f4a261 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Hiệu ứng gạch chân cho liên kết */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #f4a261;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #f4a261;
+}
+
+/* Ẩn thanh cuộn trong menu */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Menu item styling */
+.menu-item {
+  padding: 6px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Filter button */
+.filter-btn {
+  transition: all 0.3s ease;
+}
+
+/* Slider */
+.slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.slides {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  /* Hiệu ứng mờ dần */
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
+  clip-path: polygon(0 0,
+      100% 0,
+      100% 50%,
+      0 50%);
+  /* Hiệu ứng cắt nhỏ ảnh */
+  transition: clip-path 0.8s ease-in-out;
+}
+
+.slide.active img {
+  clip-path: polygon(0 0,
+      100% 0,
+      100% 100%,
+      0 100%);
+  /* Mở rộng thành hình đầy đủ */
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards 0.5s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Nút điều hướng slider với Font Awesome */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+  color: #fff;
+  /* Màu mặc định của icon */
+}
+
+.slider-btn:hover {
+  color: #f4a261;
+  /* Đổi màu khi hover */
+  transform: translateY(-50%) scale(1.1);
+}
