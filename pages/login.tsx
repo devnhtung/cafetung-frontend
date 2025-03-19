@@ -1,7 +1,7 @@
 // pages/login.tsx
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { login } from "../utils/api";
+import { login } from "../lib/api";
 
 export default function Login() {
   const [email, setEmail] = useState("");

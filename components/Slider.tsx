@@ -1,7 +1,7 @@
 // components/Slider.tsx
 "use client";
 import { useState, useEffect } from "react";
-import { getSliders } from "../utils/api";
+import { getSliders } from "../lib/api";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 export default function Slider() {

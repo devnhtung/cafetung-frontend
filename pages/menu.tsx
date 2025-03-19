@@ -1,6 +1,6 @@
 // pages/menu.tsx
 import { useEffect, useState } from "react";
-import { getProducts, getCategories } from "../utils/api";
+import { getProducts, getCategories } from "../lib/api";
 
 export default function Menu() {
   const [products, setProducts] = useState([]);

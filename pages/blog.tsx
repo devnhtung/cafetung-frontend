@@ -1,6 +1,6 @@
 // pages/blog.tsx
 import { useState, useEffect } from "react";
-import { getPosts } from "../utils/api";
+import { getPosts } from "../lib/api";
 import Image from "next/image";
 
 export default function Blog() {

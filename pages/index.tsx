@@ -1,21 +1,20 @@
 // pages/index.tsx
 import { useState, useEffect } from "react";
-import Slider from "../components/Slider";
-import MenuItem from "../components/MenuItem";
-import { getProducts, getCategories } from "../utils/api";
+import Slider from "@/components/Slider";
+import SocialMediaLinks from "@/components/SocialMediaLinks";
+import { getProducts, getCategories } from "@/lib/api";
 import { XMarkIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import { FaCartShopping } from "react-icons/fa6";
-import { CgMenuRight } from "react-icons/cg";
-import SocialMediaLinks from "../components/SocialMediaLinks";
-import AppLogo from "@/components/AppLogo";
-import Navbar from "@/components/Navbar";
+import Header from "@/components/Header";
+import MenuSidebar from "@/components/MenuSidebar";
+import { CgClose } from "react-icons/cg";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,12 +28,6 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const filteredProducts =
-    selectedCategory === "all"
-      ? products
-      : products.filter(
-          (p: any) => p.category_id === parseInt(selectedCategory)
-        );
   return (
     <div className="font-sans text-white bg-primary relative h-screen overflow-hidden">
       {/* Slider */}
@@ -42,80 +35,28 @@ export default function Home() {
 
       {/* Container chính */}
       <div className="main-content z-[-1] w-full h-full flex flex-col">
-        {/* Header */}
-        <div className="header bg-primary z-100 relative top-0 left-0 px-5 py-2.5 flex justify-between items-center">
-          {/* Navbar */}
-          <Navbar />
-          <div className="nav-actions flex items-center gap-2.5">
-            <button className="bg-white text-gray-800 px-3 py-1 rounded-full hover:bg-secondary hover:text-white transition">
-              Đăng nhập
-            </button>
-            <button
-              className="bg-gray-700 text-white px-3 py-1 rounded-full hover:bg-secondary transition opacity-50 cursor-not-allowed"
-              disabled
-            >
-              Đăng xuất
-            </button>
-            <button
-              onClick={() => setIsMenuOpen(true)}
-              className="focus:outline-none bg-white/70 rounded-full w-10 h-10 flex items-center justify-center hover:bg-secondary cursor-pointer hover:text-white transition"
-            >
-              <CgMenuRight className="w-6 h-6 text-gray-700 hover:text-white" />
-            </button>
-          </div>
-          {/* Logo bo tròn chèn xuống dưới */}
-          <AppLogo />
-        </div>
-
-        {/* Menu Sidebar */}
-        <div
-          id="menu"
-          className={`fixed top-0 right-0 h-full w-[90%] bg-primary-opaque p-6 z-20 overflow-y-auto transform transition-transform duration-300 ease-in-out ${
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
-          } scrollbar-hidden`}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className={cn(
+            "fixed p-1 left-1/2 z-[1000] focus:outline-none  w-12 h-12 flex items-center justify-center cursor-pointer hover:text-secondary transform transition-all duration-300 ease-in-out",
+            isMenuOpen
+              ? "translate-y-1 opacity-100"
+              : "-translate-y-full opacity-0"
+          )}
         >
-          <button
-            onClick={() => setIsMenuOpen(false)}
-            className="absolute top-4 right-4 focus:outline-none text-white hover:text-secondary transition"
-          >
-            <XMarkIcon className="w-6 h-6" />
-          </button>
-          <h2 className="text-xl font-bold mb-6 border-b border-secondary pb-2 text-white">
-            Thực Đơn
-          </h2>
-          <div className="flex flex-wrap gap-2 mb-4">
-            <button
-              onClick={() => setSelectedCategory("all")}
-              className={`filter-btn px-3 py-1 rounded-full text-sm transition ${
-                selectedCategory === "all"
-                  ? "bg-secondary text-white"
-                  : "bg-gray-700 text-white hover:bg-secondary"
-              }`}
-            >
-              Tất cả
-            </button>
-            {categories.map((cat: any) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`filter-btn px-3 py-1 rounded-full text-sm transition ${
-                  selectedCategory === cat.id
-                    ? "bg-secondary text-white"
-                    : "bg-gray-700 text-white hover:bg-secondary"
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
-          </div>
-          <div id="menu-items" className="space-y-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {filteredProducts.map((product: any) => (
-                <MenuItem key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-        </div>
+          <CgClose className="w-12 h-12 cursor-pointer text-secondary hover:text-secondary" />
+        </button>
+        {/* Header */}
+        <Header
+          clickMenu={() => setIsMenuOpen(!isMenuOpen)}
+          menuOpen={isMenuOpen}
+        />
+        {/* Menu Sidebar */}
+        <MenuSidebar
+          isOpen={isMenuOpen}
+          categories={categories}
+          products={products}
+        />
 
         {/* Overlay khi menu mở */}
         {isMenuOpen && (
