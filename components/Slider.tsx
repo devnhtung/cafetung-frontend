@@ -73,6 +73,7 @@ export default function Slider() {
             }`}
           >
             <Image
+              fill
               src={`${base_storage_url}/${slide.background_image}`}
               alt={`Slide ${index + 1}`}
               className={`w-full h-full object-cover absolute z-[-1] transition-[clip-path] duration-[800ms] ease-in-out ${

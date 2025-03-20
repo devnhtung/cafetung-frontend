@@ -15,7 +15,7 @@ interface MenuItemProps {
 const MenuItem: React.FC<MenuItemProps> = ({ product }) => {
   const backendBaseUrl = process.env.NEXT_PUBLIC_STORAGE_URL;
   const imageUrl = product.image
-    ? `${backendBaseUrl}${product.image}`
+    ? `${backendBaseUrl}/${product.image}`
     : "/default-image.jpg";
 
   return (
