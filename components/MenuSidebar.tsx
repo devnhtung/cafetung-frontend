@@ -8,13 +8,14 @@ interface Category {
 interface Product {
   id: string;
   name: string;
-  image_url: string;
-  price: string;
+  image: string;
+  category_id: number;
+  price: number;
 }
 interface MenuSidebarProps {
   isOpen: boolean;
   categories: Category[];
-  products: Category[];
+  products: Product[];
 }
 
 const MenuSidebar: React.FC<MenuSidebarProps> = ({
@@ -26,9 +27,7 @@ const MenuSidebar: React.FC<MenuSidebarProps> = ({
   const filteredProducts =
     selectedCategory === "all"
       ? products
-      : products.filter(
-          (p: any) => p.category_id === parseInt(selectedCategory)
-        );
+      : products.filter((p) => p.category_id === parseInt(selectedCategory));
   console.log(products);
   return (
     <div
@@ -51,7 +50,7 @@ const MenuSidebar: React.FC<MenuSidebarProps> = ({
         >
           Tất cả
         </button>
-        {categories.map((cat: any) => (
+        {categories.map((cat: Category) => (
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
@@ -67,7 +66,7 @@ const MenuSidebar: React.FC<MenuSidebarProps> = ({
       </div>
       <div id="menu-items" className="space-y-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {filteredProducts.map((product: any) => (
+          {filteredProducts.map((product: Product) => (
             <MenuItem key={product.id} product={product} />
           ))}
         </div>

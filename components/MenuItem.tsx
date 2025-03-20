@@ -2,8 +2,17 @@
 "use client";
 import Image from "next/image";
 import { formatter } from "@/lib/utils";
+interface Product {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+}
 
-export default function MenuItem({ product }: { product: any }) {
+interface MenuItemProps {
+  product: Product;
+}
+const MenuItem: React.FC<MenuItemProps> = ({ product }) => {
   const backendBaseUrl = process.env.NEXT_PUBLIC_STORAGE_URL;
   const imageUrl = product.image
     ? `${backendBaseUrl}${product.image}`
@@ -28,4 +37,6 @@ export default function MenuItem({ product }: { product: any }) {
       </div>
     </div>
   );
-}
+};
+
+export default MenuItem;

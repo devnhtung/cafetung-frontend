@@ -3,6 +3,18 @@
 import { useState, useEffect } from "react";
 import { getSliders } from "../lib/api";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
+
+interface Slide {
+  id: string;
+  title: string;
+  description: string;
+  background_image: string;
+  button_link: string;
+  button_text: string;
+  is_active: boolean;
+  order: number;
+}
 
 export default function Slider() {
   const base_storage_url = process.env.NEXT_PUBLIC_STORAGE_URL;
@@ -53,14 +65,14 @@ export default function Slider() {
         <ChevronRightIcon className="w-6 h-6" />
       </button>
       <div className="slides relative w-full h-full" id="slides">
-        {sliders.map((slide: any, index: number) => (
+        {sliders.map((slide: Slide, index: number) => (
           <div
             key={slide.id}
             className={`slide absolute top-0 left-0 w-full h-full flex items-center justify-center transition-opacity duration-[800ms] ease-in-out ${
               index === slideIndex ? "active" : ""
             }`}
           >
-            <img
+            <Image
               src={`${base_storage_url}/${slide.background_image}`}
               alt={`Slide ${index + 1}`}
               className={`w-full h-full object-cover absolute z-[-1] transition-[clip-path] duration-[800ms] ease-in-out ${

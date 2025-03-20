@@ -28,7 +28,7 @@ export const logout = () => api.post("/logout");
 export const getProducts = () => api.get("/products");
 export const getSliders = () => api.get("/sliders");
 export const getCategories = () => api.get("/categories");
-export const createOrder = (data: any) => api.post("/orders", data);
+// export const createOrder = (data: any) => api.post("/orders", data);
 export const getOrders = () => api.get("/orders");
 export const getPosts = () => api.get("/posts");
 
