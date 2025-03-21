@@ -1,6 +1,7 @@
 // pages/privacy-policy.js
 import Head from "next/head";
 import Link from "next/link";
+import AppLogo from "@/components/AppLogo";
 
 export default function PrivacyPolicy() {
   return (
@@ -27,13 +28,7 @@ export default function PrivacyPolicy() {
             Chia sẻ
           </Link>
         </div>
-        <div className="logo-container absolute left-1/2 top-full -translate-x-1/2 -translate-y-1/2 z-30">
-          <img
-            src="/logo.png"
-            alt="Logo Café Tùng"
-            className="w-20 h-20 rounded-full border-4 border-primary bg-primary object-cover"
-          />
-        </div>
+        <div className="logo-container absolute left-1/2 top-full -translate-x-1/2 -translate-y-1/2 z-30"></div>
       </div>
 
       {/* Nội dung Chính sách Bảo mật */}
