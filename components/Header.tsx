@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import { CgMenuRight, CgClose } from "react-icons/cg";
 import Login from "@/components/Login";
-import { parseCookies, destroyCookie } from "nookies";
+import { destroyCookie } from "nookies";
 import { User } from "@/types";
 
 interface HeaderProps {

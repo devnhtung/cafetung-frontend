@@ -9,11 +9,6 @@ interface LoginProps {
   onLoginSuccess: (user: User) => void;
   onLogout: () => void;
 }
-const ZaloIcon = () => (
-  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-7h2v2h-2v-2zm0-8h2v6h-2V7zm4 4h2v6h-2v-6zm-8 2h2v4H7v-4z" />
-  </svg>
-);
 
 export default function Login({ user, onLoginSuccess, onLogout }: LoginProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);

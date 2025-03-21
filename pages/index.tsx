@@ -21,9 +21,9 @@ export default function Home({ initialUser, initialToken }: HomeProps) {
   const [categories, setCategories] = useState([]);
   const [user, setUser] = useState<User | null>(initialUser);
   const [token, setToken] = useState<string | null>(initialToken);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-    !!initialUser && !!initialToken
-  );
+  // const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
+  //   !!initialUser && !!initialToken
+  // );
   useEffect(() => {
     const fetchData = async () => {
       const [productsResponse, categoriesResponse] = await Promise.all([
@@ -39,12 +39,12 @@ export default function Home({ initialUser, initialToken }: HomeProps) {
         try {
           const response = await axios.get(`/api/auth/check?token=${token}`);
           setUser(response.data.user);
-          setIsAuthenticated(true);
+          // setIsAuthenticated(true);
         } catch (error) {
           console.error("Token validation failed:", error);
           setUser(null);
           setToken(null);
-          setIsAuthenticated(false);
+          // setIsAuthenticated(false);
           destroyCookie(null, "user");
           destroyCookie(null, "auth_token");
         }
@@ -53,20 +53,20 @@ export default function Home({ initialUser, initialToken }: HomeProps) {
     checkToken();
   }, [token]);
 
-  const handleLoginSuccess = (userData: User) => {
-    setUser(userData);
-    const cookies = parseCookies();
-    setToken(cookies.auth_token || null);
-    setIsAuthenticated(true);
-  };
+  // const handleLoginSuccess = (userData: User) => {
+  //   setUser(userData);
+  //   const cookies = parseCookies();
+  //   setToken(cookies.auth_token || null);
+  //   setIsAuthenticated(true);
+  // };
 
-  const handleLogout = () => {
-    destroyCookie(null, "user");
-    destroyCookie(null, "auth_token");
-    setUser(null);
-    setToken(null);
-    setIsAuthenticated(false);
-  };
+  // const handleLogout = () => {
+  //   destroyCookie(null, "user");
+  //   destroyCookie(null, "auth_token");
+  //   setUser(null);
+  //   setToken(null);
+  //   setIsAuthenticated(false);
+  // };
   return (
     <div className="font-sans text-white bg-primary relative h-screen overflow-hidden">
       {/* Slider */}

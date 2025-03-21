@@ -25,7 +25,8 @@
     "loader": "default",
     "loaderFile": "",
     "domains": [
-      "localhost"
+      "localhost",
+      "quanly.cafetung.vn"
     ],
     "disableStaticImages": false,
     "minimumCacheTTL": 60,
