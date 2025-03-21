@@ -9,9 +9,8 @@ import Header from "@/components/Header";
 import MenuSidebar from "@/components/MenuSidebar";
 import { CgClose } from "react-icons/cg";
 import { cn } from "@/lib/utils";
-import { parseCookies, destroyCookie } from "nookies";
+import { parseCookies } from "nookies";
 import { GetServerSidePropsContext } from "next";
-import axios from "axios";
 import { User, HomeProps } from "@/types";
 
 export default function Home({ initialUser, initialToken }: HomeProps) {
@@ -20,7 +19,7 @@ export default function Home({ initialUser, initialToken }: HomeProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [user, setUser] = useState<User | null>(initialUser);
-  const [token, setToken] = useState<string | null>(initialToken);
+  // const [token, setToken] = useState<string | null>(initialToken);
   // const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
   //   !!initialUser && !!initialToken
   // );

@@ -15,7 +15,6 @@ export default function Login({ user, onLoginSuccess, onLogout }: LoginProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const AppURL = process.env.NEXT_PUBLIC_APP;
   // Hàm đăng nhập bằng Facebook
   const handleFacebookLogin = async () => {
     try {
