@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
-  images: { domains: ["localhost"] },
+  images: { domains: ["localhost", "quanly.cafetung.vn"] },
 };
 
 export default nextConfig;

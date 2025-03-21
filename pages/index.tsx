@@ -9,13 +9,21 @@ import Header from "@/components/Header";
 import MenuSidebar from "@/components/MenuSidebar";
 import { CgClose } from "react-icons/cg";
 import { cn } from "@/lib/utils";
+import { parseCookies, destroyCookie } from "nookies";
+import { GetServerSidePropsContext } from "next";
+import axios from "axios";
+import { User, HomeProps } from "@/types";
 
-export default function Home() {
+export default function Home({ initialUser, initialToken }: HomeProps) {
   const [products, setProducts] = useState([]);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-
+  const [user, setUser] = useState<User | null>(initialUser);
+  const [token, setToken] = useState<string | null>(initialToken);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
+    !!initialUser && !!initialToken
+  );
   useEffect(() => {
     const fetchData = async () => {
       const [productsResponse, categoriesResponse] = await Promise.all([
@@ -26,8 +34,39 @@ export default function Home() {
       setCategories(categoriesResponse.data);
     };
     fetchData();
-  }, []);
+    const checkToken = async () => {
+      if (token) {
+        try {
+          const response = await axios.get(`/api/auth/check?token=${token}`);
+          setUser(response.data.user);
+          setIsAuthenticated(true);
+        } catch (error) {
+          console.error("Token validation failed:", error);
+          setUser(null);
+          setToken(null);
+          setIsAuthenticated(false);
+          destroyCookie(null, "user");
+          destroyCookie(null, "auth_token");
+        }
+      }
+    };
+    checkToken();
+  }, [token]);
 
+  const handleLoginSuccess = (userData: User) => {
+    setUser(userData);
+    const cookies = parseCookies();
+    setToken(cookies.auth_token || null);
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    destroyCookie(null, "user");
+    destroyCookie(null, "auth_token");
+    setUser(null);
+    setToken(null);
+    setIsAuthenticated(false);
+  };
   return (
     <div className="font-sans text-white bg-primary relative h-screen overflow-hidden">
       {/* Slider */}
@@ -50,6 +89,8 @@ export default function Home() {
         <Header
           clickMenu={() => setIsMenuOpen(!isMenuOpen)}
           menuOpen={isMenuOpen}
+          user={user}
+          handleUser={setUser}
         />
         {/* Menu Sidebar */}
         <MenuSidebar
@@ -159,4 +200,16 @@ export default function Home() {
       </div>
     </div>
   );
+}
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const cookies = parseCookies(context);
+  const user = cookies.user ? JSON.parse(cookies.user) : null;
+  const token = cookies.auth_token || null;
+
+  return {
+    props: {
+      initialUser: user,
+      initialToken: token,
+    },
+  };
 }

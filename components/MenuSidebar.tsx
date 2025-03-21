@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MenuItem from "../components/MenuItem";
+import MenuItem from "@/components/MenuItem";
 
 interface Category {
   id: string;
