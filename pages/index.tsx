@@ -19,7 +19,7 @@ export default function Home({ initialUser, initialToken }: HomeProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [user, setUser] = useState<User | null>(initialUser);
-  // const [token, setToken] = useState<string | null>(initialToken);
+  const [token, setToken] = useState<string | null>(initialToken);
   // const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
   //   !!initialUser && !!initialToken
   // );
@@ -33,24 +33,26 @@ export default function Home({ initialUser, initialToken }: HomeProps) {
       setCategories(categoriesResponse.data);
     };
     fetchData();
-    // const checkToken = async () => {
-    //   if (token) {
-    //     try {
-    //       const response = await axios.get(`/api/auth/check?token=${token}`);
-    //       setUser(response ? response.data.user : null);
-    //       // setIsAuthenticated(true);
-    //     } catch (error) {
-    //       console.error("Token validation failed:", error);
-    //       setUser(null);
-    //       setToken(null);
-    //       // setIsAuthenticated(false);
-    //       destroyCookie(null, "user");
-    //       destroyCookie(null, "auth_token");
-    //     }
-    //   }
-    // };
-    // checkToken();
-  }, []);
+    const checkToken = async () => {
+      if (token) {
+        console.log(token);
+        setToken(token);
+        // try {
+        //   const response = await axios.get(`/api/auth/check?token=${token}`);
+        //   setUser(response ? response.data.user : null);
+        //   // setIsAuthenticated(true);
+        // } catch (error) {
+        //   console.error("Token validation failed:", error);
+        //   setUser(null);
+        //   setToken(null);
+        //   // setIsAuthenticated(false);
+        //   destroyCookie(null, "user");
+        //   destroyCookie(null, "auth_token");
+        // }
+      }
+    };
+    checkToken();
+  }, [token]);
 
   // const handleLoginSuccess = (userData: User) => {
   //   setUser(userData);

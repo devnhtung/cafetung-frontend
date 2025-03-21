@@ -20,12 +20,18 @@
       "regex": "^/(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/privacy-policy",
+      "regex": "^/privacy\\-policy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacy\\-policy(?:/)?$"
     }
   ],
   "dataRoutes": [
     {
       "page": "/",
-      "dataRouteRegex": "^/_next/data/hvjpK3onQuUwBARJW3RF\\-/index\\.json$"
+      "dataRouteRegex": "^/_next/data/2TeZeu1GxJIbPwFsdF\\-bK/index\\.json$"
     }
   ],
   "rsc": {
