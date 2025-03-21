@@ -28,7 +28,9 @@ export default function PrivacyPolicy() {
             Chia sẻ
           </Link>
         </div>
-        <div className="logo-container absolute left-1/2 top-full -translate-x-1/2 -translate-y-1/2 z-30"></div>
+        <div className="logo-container absolute left-1/2 top-full -translate-x-1/2 -translate-y-1/2 z-30">
+          <AppLogo />
+        </div>
       </div>
 
       {/* Nội dung Chính sách Bảo mật */}
