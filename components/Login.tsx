@@ -20,10 +20,11 @@ export default function Login({ user, onLoginSuccess, onLogout }: LoginProps) {
   const handleFacebookLogin = async () => {
     try {
       // Gọi API backend để khởi tạo đăng nhập bằng Facebook
-      const response = await axios.get(AppURL + "/api/auth/facebook");
+      const response = await axios.get("/api/auth/facebook");
       if (response.data.redirectUrl) {
         // Chuyển hướng đến URL OAuth do backend cung cấp
-        window.location.href = response.data.redirectUrl;
+        console.log(response.data.redirectUrl);
+        // window.location.href = response.data.redirectUrl;
       }
     } catch (error) {
       console.error("Facebook login error:", error);

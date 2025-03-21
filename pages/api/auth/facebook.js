@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   const baseApiURL = process.env.NEXT_PUBLIC_API_URL;
   try {
     // Gọi API backend để lấy URL OAuth của Facebook
-    const backendResponse = await axios.get(baseApiURL + "/api/auth/facebook");
+    const backendResponse = await axios.get(baseApiURL + "/auth/facebook");
     // console.log(backendResponse);
     res.status(200).json({ redirectUrl: backendResponse.data.redirectUrl });
   } catch (error) {
