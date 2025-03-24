@@ -3,26 +3,24 @@ import { useState, useEffect } from "react";
 import Slider from "@/components/Slider";
 import SocialMediaLinks from "@/components/SocialMediaLinks";
 import { getProducts, getCategories } from "@/lib/api";
-import { XMarkIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { FaCartShopping } from "react-icons/fa6";
 import Header from "@/components/Header";
 import MenuSidebar from "@/components/MenuSidebar";
+import ModalContact from "@/components/ModalContact";
 import { CgClose } from "react-icons/cg";
 import { cn } from "@/lib/utils";
-import { parseCookies } from "nookies";
+import { getCookie } from "cookies-next";
 import { GetServerSidePropsContext } from "next";
-import { User, HomeProps } from "@/types";
+import { useAuth } from "@/context/AuthContext";
+import Loading from "@/components/Loading";
 
-export default function Home({ initialUser, initialToken }: HomeProps) {
+export default function Home() {
+  const { isLoading } = useAuth();
   const [products, setProducts] = useState([]);
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [user, setUser] = useState<User | null>(initialUser);
-  const [token, setToken] = useState<string | null>(initialToken);
-  // const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-  //   !!initialUser && !!initialToken
-  // );
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       const [productsResponse, categoriesResponse] = await Promise.all([
@@ -33,41 +31,11 @@ export default function Home({ initialUser, initialToken }: HomeProps) {
       setCategories(categoriesResponse.data);
     };
     fetchData();
-    const checkToken = async () => {
-      if (token) {
-        console.log(token);
-        setToken(token);
-        // try {
-        //   const response = await axios.get(`/api/auth/check?token=${token}`);
-        //   setUser(response ? response.data.user : null);
-        //   // setIsAuthenticated(true);
-        // } catch (error) {
-        //   console.error("Token validation failed:", error);
-        //   setUser(null);
-        //   setToken(null);
-        //   // setIsAuthenticated(false);
-        //   destroyCookie(null, "user");
-        //   destroyCookie(null, "auth_token");
-        // }
-      }
-    };
-    checkToken();
-  }, [token]);
+  }, []);
 
-  // const handleLoginSuccess = (userData: User) => {
-  //   setUser(userData);
-  //   const cookies = parseCookies();
-  //   setToken(cookies.auth_token || null);
-  //   setIsAuthenticated(true);
-  // };
-
-  // const handleLogout = () => {
-  //   destroyCookie(null, "user");
-  //   destroyCookie(null, "auth_token");
-  //   setUser(null);
-  //   setToken(null);
-  //   setIsAuthenticated(false);
-  // };
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="font-sans text-white bg-primary relative h-screen overflow-hidden">
       {/* Slider */}
@@ -90,8 +58,6 @@ export default function Home({ initialUser, initialToken }: HomeProps) {
         <Header
           clickMenu={() => setIsMenuOpen(!isMenuOpen)}
           menuOpen={isMenuOpen}
-          user={user}
-          handleUser={setUser}
         />
         {/* Menu Sidebar */}
         <MenuSidebar
@@ -131,81 +97,20 @@ export default function Home({ initialUser, initialToken }: HomeProps) {
         </div>
 
         {/* Modal Liên hệ */}
-        <div
-          className={`fixed inset-0 bg-black/50 flex items-center justify-center z-30 transition-opacity duration-300 ease-in-out ${
-            isContactModalOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          <div className="bg-primary-opaque p-6 rounded-lg w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Liên Hệ Với Chúng Tôi</h2>
-              <button
-                onClick={() => setIsContactModalOpen(false)}
-                className="focus:outline-none text-white hover:text-secondary transition"
-              >
-                <XMarkIcon className="w-6 h-6" />
-              </button>
-            </div>
-            <form>
-              <div className="mb-4">
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-1"
-                >
-                  Họ Tên
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full p-2 rounded-lg bg-white text-primary focus:outline-none"
-                  placeholder="Nhập họ tên"
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-1"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full p-2 rounded-lg bg-white text-primary focus:outline-none"
-                  placeholder="Nhập email"
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-1"
-                >
-                  Tin Nhắn
-                </label>
-                <textarea
-                  id="message"
-                  className="w-full p-2 rounded-lg bg-white text-primary focus:outline-none"
-                  rows={4}
-                  placeholder="Nhập tin nhắn của bạn"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="bg-secondary text-white px-4 py-2 rounded-full hover:bg-secondary/80 transition w-full"
-              >
-                Gửi
-              </button>
-            </form>
-          </div>
-        </div>
+        <ModalContact
+          closeModal={() => setIsContactModalOpen(false)}
+          isOpen={isContactModalOpen}
+        />
       </div>
     </div>
   );
 }
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const cookies = parseCookies(context);
-  const user = cookies.user ? JSON.parse(cookies.user) : null;
-  const token = cookies.auth_token || null;
+  const { req, res } = context;
+  const userCookie = await getCookie("user", { req, res });
+  const user = userCookie ? JSON.parse(userCookie) : null;
+  const tokenCookie = await getCookie("auth_token", { req, res });
+  const token = userCookie ? tokenCookie : null;
 
   return {
     props: {

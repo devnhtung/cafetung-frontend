@@ -1,29 +1,23 @@
 // components/Login.tsx
 import { FaFacebookF, FaTimes } from "react-icons/fa";
 import axios from "axios";
-import { useState } from "react";
-import { User } from "@/types";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
 
-interface LoginProps {
-  user: User | null;
-  onLoginSuccess: (user: User) => void;
-  onLogout: () => void;
-}
-
-export default function Login({ user, onLoginSuccess, onLogout }: LoginProps) {
+export default function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { user, handleLogout, setUser, setIsAuthenticated } = useAuth();
+
   // Hàm đăng nhập bằng Facebook
   const handleFacebookLogin = async () => {
     try {
       // Gọi API backend để khởi tạo đăng nhập bằng Facebook
       const response = await axios.get("/api/auth/facebook");
       if (response.data.redirectUrl) {
-        // Chuyển hướng đến URL OAuth do backend cung cấp
-        console.log(response.data.redirectUrl);
-        // window.location.href = response.data.redirectUrl;
+        window.location.href = response.data.redirectUrl;
       }
     } catch (error) {
       console.error("Facebook login error:", error);
@@ -43,7 +37,7 @@ export default function Login({ user, onLoginSuccess, onLogout }: LoginProps) {
       });
 
       const userData = response.data.user;
-      onLoginSuccess(userData);
+      // onLoginSuccess(userData);
       setIsModalOpen(false);
       setEmail("");
       setPassword("");
@@ -61,7 +55,7 @@ export default function Login({ user, onLoginSuccess, onLogout }: LoginProps) {
         <>
           <span className="text-white">Xin chào, {user.name}</span>
           <button
-            onClick={onLogout}
+            onClick={handleLogout}
             className="bg-gray-700 text-white px-3 py-1 rounded-full hover:bg-secondary transition"
           >
             Đăng xuất

@@ -28,7 +28,6 @@ const MenuSidebar: React.FC<MenuSidebarProps> = ({
     selectedCategory === "all"
       ? products
       : products.filter((p) => p.category_id === parseInt(selectedCategory));
-  console.log(products);
   return (
     <div
       id="menu"

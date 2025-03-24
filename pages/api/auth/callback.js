@@ -5,7 +5,6 @@ export default async function handler(req, res) {
   if (!user) {
     return res.status(400).json({ error: "Missing user data" });
   }
-
   try {
     const userData = JSON.parse(user);
     // Lưu thông tin người dùng vào cookie
@@ -22,10 +21,10 @@ export default async function handler(req, res) {
     }
     // Thiết lập cookie
     res.setHeader("Set-Cookie", [
-      `user=${encodedUserData}; Path=/; HttpOnly; SameSite=Strict`,
-      `auth_token=${token}; Path=/; HttpOnly; SameSite=Strict`,
+      `user=${encodedUserData}; Path=/; HttpOnly; SameSite=Lax`,
+      `auth_token=${token}; Path=/; HttpOnly; SameSite=Lax`,
     ]);
-    res.redirect("/");
+    res.writeHead(302, { Location: "/?login=true" }).end();
   } catch (error) {
     console.error("Error processing callback:", error);
     res.status(500).json({ error: "Failed to process callback" });

@@ -1,11 +1,10 @@
 {
+  "/": "pages/index.js",
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/privacy-policy": "pages/privacy-policy.html",
   "/api/auth/callback": "pages/api/auth/callback.js",
-  "/api/auth/facebook": "pages/api/auth/facebook.js",
   "/api/auth/check": "pages/api/auth/check.js",
-  "/": "pages/index.js",
-  "/404": "pages/404.html"
+  "/api/auth/clear-cookies": "pages/api/auth/clear-cookies.js",
+  "/api/auth/facebook": "pages/api/auth/facebook.js"
 }
