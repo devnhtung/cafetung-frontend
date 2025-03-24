@@ -1,7 +1,7 @@
 // components/Login.tsx
 import { FaFacebookF, FaTimes } from "react-icons/fa";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Login() {
@@ -9,7 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { user, handleLogout, setUser, setIsAuthenticated } = useAuth();
+  const { user, handleLogout } = useAuth();
 
   // Hàm đăng nhập bằng Facebook
   const handleFacebookLogin = async () => {
@@ -31,13 +31,10 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await axios.post("/api/auth/email", {
-        email,
-        password,
-      });
-
-      const userData = response.data.user;
-      // onLoginSuccess(userData);
+      // const response = await axios.post("/api/auth/email", {
+      //   email,
+      //   password,
+      // });
       setIsModalOpen(false);
       setEmail("");
       setPassword("");
