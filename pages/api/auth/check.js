@@ -4,7 +4,6 @@ import axios from "axios";
 
 export default async function handler(req, res) {
   const token = getCookie("auth_token", { req, res });
-  console.log(token);
   const baseApiURL = process.env.NEXT_PUBLIC_API_URL;
   res.status(200).json(token);
   if (!token) {

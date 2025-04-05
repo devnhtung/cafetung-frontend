@@ -4,7 +4,7 @@ import Slider from "@/components/Slider";
 import SocialMediaLinks from "@/components/SocialMediaLinks";
 import { getProducts, getCategories } from "@/lib/api";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
-import { FaCartShopping } from "react-icons/fa6";
+// import { FaCartShopping } from "react-icons/fa6";
 import Header from "@/components/Header";
 import MenuSidebar from "@/components/MenuSidebar";
 import ModalContact from "@/components/ModalContact";
@@ -46,7 +46,7 @@ export default function Home() {
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className={cn(
-            "fixed p-1 left-1/2 z-[1000] focus:outline-none  w-12 h-12 flex items-center justify-center cursor-pointer hover:text-secondary transform transition-all duration-300 ease-in-out",
+            "absolute p-1 right-4 top-1   z-[1000] focus:outline-none md:w-12 md:h-12 w-10 h-10 flex items-center justify-center cursor-pointer hover:text-secondary transform transition-all duration-300 ease-in-out",
             isMenuOpen
               ? "translate-y-1 opacity-100"
               : "-translate-y-full opacity-0"
@@ -79,12 +79,12 @@ export default function Home() {
 
         {/* Nút Order và Liên hệ */}
         <div className="absolute bottom-8 right-6 flex flex-col space-y-6 z-10">
-          <div className="tooltip">
+          {/* <div className="tooltip">
             <button className="w-12 h-12 cursor-pointer bg-white/20 rounded-full flex items-center justify-center hover:bg-white/70 hover:text-white transition duration-300">
               <FaCartShopping className="w-6 h-6 text-white" />
             </button>
             <span className="tooltip-text">Đặt hàng</span>
-          </div>
+          </div> */}
           <div className="tooltip">
             <button
               onClick={() => setIsContactModalOpen(true)}

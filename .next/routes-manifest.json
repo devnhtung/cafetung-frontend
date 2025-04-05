@@ -22,6 +22,54 @@
       "namedRegex": "^/(?:/)?$"
     },
     {
+      "page": "/dashboard",
+      "regex": "^/dashboard(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard(?:/)?$"
+    },
+    {
+      "page": "/dashboard/employee-evaluations",
+      "regex": "^/dashboard/employee\\-evaluations(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/employee\\-evaluations(?:/)?$"
+    },
+    {
+      "page": "/dashboard/employees",
+      "regex": "^/dashboard/employees(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/employees(?:/)?$"
+    },
+    {
+      "page": "/dashboard/index copy",
+      "regex": "^/dashboard/index copy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/index copy(?:/)?$"
+    },
+    {
+      "page": "/dashboard/schedule",
+      "regex": "^/dashboard/schedule(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/schedule(?:/)?$"
+    },
+    {
+      "page": "/dashboard/shift",
+      "regex": "^/dashboard/shift(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/shift(?:/)?$"
+    },
+    {
+      "page": "/dashboard/shift-approvals",
+      "regex": "^/dashboard/shift\\-approvals(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/shift\\-approvals(?:/)?$"
+    },
+    {
+      "page": "/dashboard/shift-tasks",
+      "regex": "^/dashboard/shift\\-tasks(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/shift\\-tasks(?:/)?$"
+    },
+    {
       "page": "/privacy-policy",
       "regex": "^/privacy\\-policy(?:/)?$",
       "routeKeys": {},
@@ -31,7 +79,35 @@
   "dataRoutes": [
     {
       "page": "/",
-      "dataRouteRegex": "^/_next/data/5AGXoeW9tD164XDWtb\\-Ot/index\\.json$"
+      "dataRouteRegex": "^/_next/data/rbfLH\\-xfDjAHPign43oIU/index\\.json$"
+    },
+    {
+      "page": "/dashboard",
+      "dataRouteRegex": "^/_next/data/rbfLH\\-xfDjAHPign43oIU/dashboard\\.json$"
+    },
+    {
+      "page": "/dashboard/employee-evaluations",
+      "dataRouteRegex": "^/_next/data/rbfLH\\-xfDjAHPign43oIU/dashboard/employee-evaluations\\.json$"
+    },
+    {
+      "page": "/dashboard/employees",
+      "dataRouteRegex": "^/_next/data/rbfLH\\-xfDjAHPign43oIU/dashboard/employees\\.json$"
+    },
+    {
+      "page": "/dashboard/index copy",
+      "dataRouteRegex": "^/_next/data/rbfLH\\-xfDjAHPign43oIU/dashboard/index copy\\.json$"
+    },
+    {
+      "page": "/dashboard/schedule",
+      "dataRouteRegex": "^/_next/data/rbfLH\\-xfDjAHPign43oIU/dashboard/schedule\\.json$"
+    },
+    {
+      "page": "/dashboard/shift-approvals",
+      "dataRouteRegex": "^/_next/data/rbfLH\\-xfDjAHPign43oIU/dashboard/shift-approvals\\.json$"
+    },
+    {
+      "page": "/dashboard/shift-tasks",
+      "dataRouteRegex": "^/_next/data/rbfLH\\-xfDjAHPign43oIU/dashboard/shift-tasks\\.json$"
     }
   ],
   "rsc": {

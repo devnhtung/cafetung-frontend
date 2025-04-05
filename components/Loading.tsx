@@ -13,7 +13,7 @@ const Loading: React.FC = () => {
           height={30}
           src={`${base_storage_url}/logo.svg`}
           alt="Logo Café Tùng"
-          className="w-30 h-30 rounded-full border-4 border-primary bg-primary object-contain animate-bounce"
+          className="w-30 h-30 rounded-full  border-primary bg-primary object-contain animate-bounce"
         />
       </div>
 

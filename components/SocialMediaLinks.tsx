@@ -14,17 +14,17 @@ const socialMediaLinks: SocialMediaItem[] = [
     tooltip: "Facebook",
   },
   {
-    href: "#",
+    href: "https://www.threads.net/@cafetung.hue",
     icon: <FaThreads className="w-5 h-5 text-white" />,
     tooltip: "Thread",
   },
   {
-    href: "https://instagram.com/cafetung",
+    href: "https://www.instagram.com/cafetung.hue/",
     icon: <FaInstagram className="w-5 h-5 text-white" />,
     tooltip: "Instagram",
   },
   {
-    href: "#",
+    href: "https://www.tiktok.com/@cafetunghue",
     icon: <FaTiktok className="w-6 h-6 text-white" />,
     tooltip: "Tiktok",
   },

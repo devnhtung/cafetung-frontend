@@ -9,12 +9,7 @@ interface HeaderProps {
   menuOpen: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({
-  clickMenu,
-  menuOpen,
-  // handleUser,
-}) => {
-  // const handleLoginSuccess = (userData: User) => {};
+const Header: React.FC<HeaderProps> = ({ clickMenu, menuOpen }) => {
   return (
     <div className="header bg-primary z-100 relative top-0 left-0 px-5 py-2.5 flex justify-between items-center">
       {/* Navbar */}
@@ -24,15 +19,15 @@ const Header: React.FC<HeaderProps> = ({
         <button
           onClick={clickMenu}
           className={cn(
-            "focus:outline-none bg-white/70 rounded-full w-10 h-10 flex items-center justify-center hover:bg-secondary cursor-pointer hover:text-white transition",
+            "focus:outline-none bg-white/70 rounded-full w-8 h-8 md:w-10 md:h-10 flex items-center justify-center hover:bg-secondary cursor-pointer hover:text-white transition",
             menuOpen ? "z-1000" : ""
           )}
         >
           {menuOpen && (
-            <CgClose className="w-6 h-6 text-white hover:text-white" />
+            <CgClose className="md:w-7 md:h-7  w-5 h-5 text-white hover:text-white" />
           )}
           {!menuOpen && (
-            <CgMenuRight className="w-6 h-6 text-gray-700 hover:text-white" />
+            <CgMenuRight className="md:w-7 md:h-7 w-5 h-5 text-gray-700 hover:text-white" />
           )}
         </button>
       </div>

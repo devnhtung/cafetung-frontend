@@ -7,16 +7,18 @@ interface ModalContactProps {
 const ModalContact: React.FC<ModalContactProps> = ({ isOpen, closeModal }) => {
   return (
     <div
-      className={`fixed inset-0 bg-black/50 flex items-center justify-center z-30 transition-opacity duration-300 ease-in-out ${
+      className={`fixed pt-[65px] inset-0 bg-black/70 flex items-start  justify-center z-100 transition-opacity duration-300 ease-in-out ${
         isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
-      <div className="bg-primary-opaque p-6 rounded-lg w-full max-w-md">
+      <div className="bg-primary-opaque p-6 pt-[40px] relative rounded-lg w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Liên Hệ Với Chúng Tôi</h2>
+          <h2 className="uppercase text-xl flex-1 text-center font-bold">
+            Liên Hệ
+          </h2>
           <button
             onClick={closeModal}
-            className="focus:outline-none text-white hover:text-secondary transition"
+            className="absolute top-5 right-5 cursor-pointer focus:outline-none text-white hover:text-secondary transition"
           >
             <XMarkIcon className="w-6 h-6" />
           </button>
