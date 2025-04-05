@@ -46,6 +46,7 @@ export const AuthProvider = ({
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        await axios.get("sanctum/csrf-cookie");
         if (!token) {
           if (router.query.logout) {
             router.replace("/", undefined, { shallow: true });
@@ -93,7 +94,6 @@ export const AuthProvider = ({
     checkAuth();
   }, []);
   const handleLogin = async (email: string, password: string) => {
-    // await axios.get("sanctum/csrf-cookie");
     const response = await login({ email, password });
     const authToken = response.data.token;
     const authUser = response.data.user;
@@ -123,7 +123,6 @@ export const AuthProvider = ({
         setUser(null);
         setIsAuthenticated(false);
         deleteCookie("user");
-        deleteCookie("XSRF-TOKEN");
         deleteCookie("cafe_tung_session");
         deleteCookie("auth_token");
         console.log("Đăng xuất thành công!");
