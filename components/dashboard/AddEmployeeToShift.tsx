@@ -131,7 +131,7 @@ const AddEmployeeToShift: React.FC<AddEmployeeToShiftProps> = ({
             </Label>
             <Select
               value={selectedPosition?.toString() || ""}
-              onValueChange={(value) => setSelectedPosition(Number(value))}
+              onValueChange={(value: string) => setSelectedPosition(Number(value))}
             >
               <SelectTrigger
                 id="position-select"
