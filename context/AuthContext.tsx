@@ -46,7 +46,8 @@ export const AuthProvider = ({
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("sanctum/csrf-cookie");
+        const publicApp = process.env.NEXT_PUBLIC_APP;
+        await axios.get(`${publicApp}/sanctum/csrf-cookie`);
         if (!token) {
           if (router.query.logout) {
             router.replace("/", undefined, { shallow: true });
