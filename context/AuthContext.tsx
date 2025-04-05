@@ -47,7 +47,10 @@ export const AuthProvider = ({
     const checkAuth = async () => {
       try {
         const publicApp = process.env.NEXT_PUBLIC_APP;
-        await axios.get(`${publicApp}/sanctum/csrf-cookie`);
+        await axios.get(`${publicApp}/sanctum/csrf-cookie`, {
+          withCredentials: true,
+        });
+        console.log(`${publicApp}/sanctum/csrf-cookie`);
         if (!token) {
           if (router.query.logout) {
             router.replace("/", undefined, { shallow: true });
