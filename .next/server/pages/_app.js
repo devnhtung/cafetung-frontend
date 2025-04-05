@@ -1,1 +1,9 @@
-"use strict";(()=>{var e={};e.id=636,e.ids=[636],e.modules={361:e=>{e.exports=require("next/dist/compiled/next-server/pages.runtime.prod.js")},1428:e=>{e.exports=import("axios")},2015:e=>{e.exports=require("react")},2326:e=>{e.exports=require("react-dom")},4075:e=>{e.exports=require("zlib")},4391:e=>{e.exports=import("react-toastify")},7910:e=>{e.exports=require("stream")},7991:e=>{e.exports=require("cookies-next")},8732:e=>{e.exports=require("react/jsx-runtime")},9021:e=>{e.exports=require("fs")}};var r=require("../webpack-runtime.js");r.C(e);var t=e=>r(r.s=e),s=r.X(0,[89,587,386],()=>t(2386));module.exports=s})();
+const CHUNK_PUBLIC_PATH = "server/pages/_app.js";
+const runtime = require("../chunks/ssr/[turbopack]_runtime.js");
+runtime.loadChunk("server/chunks/ssr/node_modules_next_9204176b._.js");
+runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_fa_index_mjs_275a2265._.js");
+runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_lib_6322dabf._.js");
+runtime.loadChunk("server/chunks/ssr/node_modules_@swc_helpers_cjs_ac5ba3e8._.js");
+runtime.loadChunk("server/chunks/ssr/[root of the server]__c0f79702._.js");
+runtime.getOrInstantiateRuntimeModule("[project]/pages/_app.tsx [ssr] (ecmascript)", CHUNK_PUBLIC_PATH);
+module.exports = runtime.getOrInstantiateRuntimeModule("[project]/pages/_app.tsx [ssr] (ecmascript)", CHUNK_PUBLIC_PATH).exports;

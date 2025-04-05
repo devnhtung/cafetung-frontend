@@ -93,6 +93,7 @@ export const AuthProvider = ({
     checkAuth();
   }, []);
   const handleLogin = async (email: string, password: string) => {
+    // await axios.get("sanctum/csrf-cookie");
     const response = await login({ email, password });
     const authToken = response.data.token;
     const authUser = response.data.user;

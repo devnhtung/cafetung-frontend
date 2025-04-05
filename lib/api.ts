@@ -7,7 +7,10 @@ export const login = async (credentials: {
   email: string;
   password: string;
 }) => {
-  return API.post("/login", credentials);
+  console.log(credentials);
+  const response = await API.post("/login", credentials);
+  console.log(response);
+  return response;
 };
 
 export const register = (data: {
