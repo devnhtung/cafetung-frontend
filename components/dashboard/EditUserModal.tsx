@@ -169,7 +169,7 @@ const EditUserModal: React.FC<EditUserModalProps> = ({
                 <Label htmlFor="role">Vai trò</Label>
                 <Select
                   value={newUser.role ?? ""}
-                  onValueChange={(value) =>
+                  onValueChange={(value: string) =>
                     setNewUser({
                       ...newUser,
                       role: value as "staff" | "manage" | "admin",
@@ -210,7 +210,7 @@ const EditUserModal: React.FC<EditUserModalProps> = ({
                 <Label htmlFor="position">Vị trí</Label>
                 <Select
                   value={newUser.position_id?.toString()}
-                  onValueChange={(value) =>
+                  onValueChange={(value: string) =>
                     setNewUser({ ...newUser, position_id: Number(value) })
                   }
                 >
@@ -266,7 +266,7 @@ const EditUserModal: React.FC<EditUserModalProps> = ({
                 <Label htmlFor="gender">Giới tính</Label>
                 <Select
                   value={newDetail.gender ?? " "}
-                  onValueChange={(value) =>
+                  onValueChange={(value: string) =>
                     setNewDetail({
                       ...newDetail,
                       gender:

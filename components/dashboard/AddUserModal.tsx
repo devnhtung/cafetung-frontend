@@ -119,7 +119,7 @@ const AddUserModal: React.FC<AddUserModalProps> = ({
             <Label htmlFor="role">Vai trò</Label>
             <Select
               value={newUser.role ?? ""}
-              onValueChange={(value) =>
+              onValueChange={(value: string) =>
                 setNewUser({
                   ...newUser,
                   role: value as "staff" | "manage" | "admin",
@@ -160,7 +160,7 @@ const AddUserModal: React.FC<AddUserModalProps> = ({
             <Label htmlFor="position">Vị trí</Label>
             <Select
               value={newUser.position_id?.toString() ?? ""}
-              onValueChange={(value) =>
+              onValueChange={(value: string) =>
                 setNewUser({ ...newUser, position_id: Number(value) })
               }
             >

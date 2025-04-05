@@ -99,7 +99,10 @@ const ManagerSchedule: React.FC = () => {
         </div>
         <div className="flex items-center space-x-2">
           <label className="text-sm font-medium">Lọc lịch:</label>
-          <Select value={filter} onValueChange={(value) => setFilter(value)}>
+          <Select
+            value={filter}
+            onValueChange={(value: string) => setFilter(value)}
+          >
             <SelectTrigger className="w-[160px] sm:w-[180px]">
               <SelectValue placeholder="Chọn bộ lọc" />
             </SelectTrigger>
