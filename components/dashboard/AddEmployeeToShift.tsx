@@ -102,7 +102,9 @@ const AddEmployeeToShift: React.FC<AddEmployeeToShiftProps> = ({
             </Label>
             <Select
               value={selectedEmployee?.toString() || ""}
-              onValueChange={(value) => setSelectedEmployee(Number(value))}
+              onValueChange={(value: string) =>
+                setSelectedEmployee(Number(value))
+              }
             >
               <SelectTrigger
                 id="employee-select"
